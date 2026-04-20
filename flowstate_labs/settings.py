@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+import cloudinary
+import dj_database_url
+from datetime import timedelta
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,6 +34,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+AUTH_USER_MODEL = "users.User"
+
 
 # Application definition
 
@@ -41,6 +50,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'django_filters',
+    'rest_framework_simplejwt',
+
+    "cloudinary",
+    "cloudinary_storage",
 
     'strains',
     'terpenes',
@@ -48,7 +61,17 @@ INSTALLED_APPS = [
     'states',
     'recommendations',
     'users',
+    "feedback",
 ]
+
+cloudinary.config(
+    cloud_name=os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.environ.get("CLOUDINARY_API_KEY"),
+    api_secret=os.environ.get("CLOUDINARY_API_SECRET"),
+    secure=True,
+)
+
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -84,31 +107,42 @@ WSGI_APPLICATION = 'flowstate_labs.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.parse(
-        'postgresql://postgres:gCZAYsVywyLSiQPZnXKXHOWHudcthnhQ@hopper.proxy.rlwy.net:22879/railway',
+        'postgresql://postgres:wMQVthoKYCkGEgpRXuDcYwBzqVBYgWHA@maglev.proxy.rlwy.net:20682/railway',
         conn_max_age=600,
         ssl_require=True
     )
 }
 
+
 REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": [
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.AllowAny",
-    ],
-    "DEFAULT_RENDERER_CLASSES": [
+    ),
+    "DEFAULT_RENDERER_CLASSES": (
         "rest_framework.renderers.JSONRenderer",
         "rest_framework.renderers.BrowsableAPIRenderer",
-    ],
-    "DEFAULT_FILTER_BACKENDS": [
+    ),
+    "DEFAULT_FILTER_BACKENDS": (
         "django_filters.rest_framework.DjangoFilterBackend",
         "rest_framework.filters.SearchFilter",
         "rest_framework.filters.OrderingFilter",
-    ],
+    ),
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 12,
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": False,
+    "BLACKLIST_AFTER_ROTATION": False,
+    "UPDATE_LAST_LOGIN": True,
 }
 
 

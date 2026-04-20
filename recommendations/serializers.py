@@ -45,6 +45,42 @@ class RecommendedStrainSerializer(serializers.ModelSerializer):
         decimal_places=2,
         read_only=True
     )
+    matched_effect_score = serializers.DecimalField(
+        max_digits=4,
+        decimal_places=2,
+        read_only=True
+    )
+    matched_terpene_score = serializers.DecimalField(
+        max_digits=4,
+        decimal_places=2,
+        read_only=True
+    )
+    matched_time_of_day_score = serializers.DecimalField(
+        max_digits=4,
+        decimal_places=2,
+        read_only=True
+    )
+    feedback_adjustment = serializers.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        read_only=True
+    )
+    personalization_adjustment = serializers.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        read_only=True
+    )
+    memory_adjustment = serializers.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        read_only=True
+    )
+    final_score = serializers.DecimalField(
+        max_digits=6,
+        decimal_places=4,
+        read_only=True
+    )
+    
 
     class Meta:
         model = StrainState
@@ -65,6 +101,13 @@ class RecommendedStrainSerializer(serializers.ModelSerializer):
             "state_name",
             "state_slug",
             "recommendation_score",
+            "matched_effect_score",
+            "matched_terpene_score",
+            "matched_time_of_day_score",
+            "feedback_adjustment",
+            "final_score",
             "best_time_of_day",
             "notes",
+            "personalization_adjustment",
+            "memory_adjustment",
         ]

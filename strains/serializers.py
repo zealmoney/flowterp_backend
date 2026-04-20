@@ -6,6 +6,33 @@ from terpenes.serializers import TerpeneSerializer
 from .models import Strain, StrainEffect, StrainState, StrainTerpene
 
 
+def get_cloudinary_image_url(obj):
+    if not obj.image:
+        return None
+
+    return obj.image.url.replace(
+        "/upload/",
+        "/upload/f_auto,q_auto,w_800,c_fill/"
+    )
+
+
+class StrainSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Strain
+        fields = [
+            "id",
+            "name",
+            "slug",
+            "strain_type",
+            "image_url",
+        ]
+
+    def get_image_url(self, obj):
+        return get_cloudinary_image_url(obj)
+
+
 class StrainEffectSerializer(serializers.ModelSerializer):
     effect = EffectSerializer(read_only=True)
 
@@ -47,6 +74,8 @@ class StrainStateSerializer(serializers.ModelSerializer):
 
 
 class SimilarStrainSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
+
     class Meta:
         model = Strain
         fields = [
@@ -54,6 +83,7 @@ class SimilarStrainSerializer(serializers.ModelSerializer):
             "name",
             "slug",
             "strain_type",
+            "image_url",
             "flavor_profile",
             "aroma_profile",
             "thc_min",
@@ -61,8 +91,13 @@ class SimilarStrainSerializer(serializers.ModelSerializer):
             "is_featured",
         ]
 
+    def get_image_url(self, obj):
+        return get_cloudinary_image_url(obj)
+
 
 class StrainListSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
+
     class Meta:
         model = Strain
         fields = [
@@ -70,6 +105,7 @@ class StrainListSerializer(serializers.ModelSerializer):
             "name",
             "slug",
             "strain_type",
+            "image_url",
             "flavor_profile",
             "aroma_profile",
             "thc_min",
@@ -80,8 +116,12 @@ class StrainListSerializer(serializers.ModelSerializer):
             "is_featured",
         ]
 
+    def get_image_url(self, obj):
+        return get_cloudinary_image_url(obj)
+
 
 class StrainDetailSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
     strain_effect_links = StrainEffectSerializer(many=True, read_only=True)
     strain_terpene_links = StrainTerpeneSerializer(many=True, read_only=True)
     strain_state_links = StrainStateSerializer(many=True, read_only=True)
@@ -98,6 +138,7 @@ class StrainDetailSerializer(serializers.ModelSerializer):
             "slug",
             "strain_type",
             "description",
+            "image_url",
             "flavor_profile",
             "aroma_profile",
             "thc_min",
@@ -118,6 +159,9 @@ class StrainDetailSerializer(serializers.ModelSerializer):
             "strain_state_links",
             "similar_strains",
         ]
+
+    def get_image_url(self, obj):
+        return get_cloudinary_image_url(obj)
 
     def get_quick_summary(self, obj):
         top_state = (

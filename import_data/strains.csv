@@ -1,0 +1,31 @@
+name,strain_type,description,image_filename,flavor_profile,aroma_profile,thc_min,thc_max,cbd_min,cbd_max,effects,terpenes,states
+Blue Dream,hybrid,Clear-headed creative uplift with smooth daytime balance,blue_dream.jpg,berry sweet,earthy herbal,17,24,0,1,creative:0.9,limonene:0.8,creative-flow:0.9
+Jack Herer,sativa,Energetic clarity and focus with a bright cerebral lift,jack_herer.jpg,citrus pine,spicy herbal,18,24,0,1,focused:0.95,terpinolene:0.9,deep-focus:0.9
+Sour Diesel,sativa,Fast acting cerebral energy with a sharp uplifting edge,sour_diesel.jpg,diesel citrus,pungent skunky,19,26,0,1,energetic:1.0,limonene:0.85,energy-boost:1.0
+Green Crack,sativa,Sharp focus and stimulation for active creative sessions,green_crack.jpg,mango citrus,sweet earthy,17,25,0,1,focused:1.0,terpinolene:0.9,deep-focus:1.0
+Durban Poison,sativa,Pure uplifting energy with clean functional momentum,durban_poison.jpg,sweet pine,spicy earthy,18,27,0,1,energetic:1.0,terpinolene:0.9,energy-boost:1.0
+Super Lemon Haze,sativa,Citrus creative boost with a lively upbeat feel,super_lemon_haze.jpg,lemon citrus,zesty sweet,17,25,0,1,creative:0.9,limonene:0.9,creative-flow:0.9
+Pineapple Express,hybrid,Balanced creative energy with smooth approachable effects,pineapple_express.jpg,tropical pineapple,fresh earthy,18,24,0,1,creative:0.9,limonene:0.8,creative-flow:0.9
+Gelato,hybrid,Relaxed creativity with soft euphoric calm,gelato.jpg,sweet creamy,dessert earthy,20,26,0,1,creative:0.8,myrcene:0.7,cinematic-review:0.9
+Wedding Cake,indica,Deep calming relaxation with rich body comfort,wedding_cake.jpg,vanilla sweet,peppery earthy,20,27,0,1,relaxed:1.0,myrcene:0.9,cinematic-review:1.0
+OG Kush,hybrid,Classic calming high with steady mental ease,og_kush.jpg,lemon pine,earthy diesel,18,25,0,1,relaxed:0.9,myrcene:0.8,cinematic-review:0.9
+Granddaddy Purple,indica,Heavy sedation and full body wind-down,gdp.jpg,grape berry,sweet earthy,17,24,0,1,sleepy:1.0,myrcene:0.9,cinematic-review:1.0
+Northern Lights,indica,Smooth sedation and stress relief for slower evenings,northern_lights.jpg,sweet pine,earthy spicy,16,23,0,1,sleepy:1.0,myrcene:0.9,cinematic-review:1.0
+Bubba Kush,indica,Tranquil body high with dense relaxing effects,bubba_kush.jpg,coffee cocoa,earthy sweet,18,25,0,1,relaxed:1.0,myrcene:0.9,cinematic-review:1.0
+Do-Si-Dos,hybrid,Relaxed uplifting mix with heavy evening comfort,dosidos.jpg,sweet floral,pungent earthy,20,28,0,1,relaxed:0.9,linalool:0.8,cinematic-review:1.0
+Zkittlez,indica,Fruity relaxation with a mellow happy tone,zkittlez.jpg,tropical candy,sweet herbal,16,23,0,1,relaxed:0.9,myrcene:0.8,cinematic-review:0.9
+Apple Fritter,hybrid,Balanced creative calm with sweet euphoric warmth,apple_fritter.jpg,apple pastry,sweet earthy,20,27,0,1,creative:0.8,limonene:0.7,cinematic-review:0.9
+Mimosa,sativa,Social uplifting energy with bright daytime appeal,mimosa.jpg,citrus orange,sweet tropical,18,25,0,1,energetic:0.9,limonene:0.8,creative-flow:1.0
+Strawberry Cough,sativa,Creative clarity with light social warmth,strawberry_cough.jpg,strawberry berry,sweet peppery,17,24,0,1,creative:0.9,terpinolene:0.8,creative-flow:0.9
+White Widow,hybrid,Balanced stimulation with calm centered focus,white_widow.jpg,woody citrus,earthy pungent,18,25,0,1,creative:0.8,myrcene:0.7,deep-focus:0.7
+AK-47,hybrid,Calm creative uplift with smooth hybrid balance,ak47.jpg,floral earthy,skunky sweet,17,24,0,1,creative:0.8,myrcene:0.7,creative-flow:0.8
+Trainwreck,hybrid,Intense cerebral high with fast energetic onset,trainwreck.jpg,lemon pine,spicy herbal,18,25,0,1,energetic:0.9,terpinolene:0.9,energy-boost:0.9
+Chemdawg,hybrid,Mental clarity boost with potent classic effects,chemdawg.jpg,diesel lemon,pungent earthy,19,27,0,1,focused:0.9,caryophyllene:0.8,deep-focus:0.9
+GSC,hybrid,Euphoric creativity with warm full-bodied comfort,gsc.jpg,mint sweet,earthy dessert,19,28,0,1,creative:0.9,caryophyllene:0.8,creative-flow:0.9
+LSD,hybrid,Trippy introspection with dreamy cinematic depth,lsd.jpg,earthy chestnut,herbal sweet,18,24,0,1,creative:0.9,terpinolene:0.8,cinematic-review:0.8
+Amnesia Haze,sativa,High-energy stimulation with bright mental spark,amnesia_haze.jpg,citrus lemon,earthy spicy,19,26,0,1,energetic:1.0,limonene:0.9,energy-boost:1.0
+Skywalker OG,indica,Heavy relaxing body high with deep evening calm,skywalker_og.jpg,spicy herbal,earthy diesel,20,27,0,1,relaxed:1.0,myrcene:0.9,cinematic-review:1.0
+Purple Punch,indica,Sweet calming strain with soft sedating finish,purple_punch.jpg,grape blueberry,sweet vanilla,18,24,0,1,relaxed:1.0,myrcene:0.9,cinematic-review:1.0
+Banana Kush,hybrid,Relaxed creative mood with mellow euphoric tone,banana_kush.jpg,banana tropical,sweet earthy,18,25,0,1,relaxed:0.8,myrcene:0.7,cinematic-review:0.8
+Runtz,hybrid,Balanced euphoric effects with rich smooth flavor,runtz.jpg,candy fruit,sweet creamy,19,27,0,1,relaxed:0.9,limonene:0.8,cinematic-review:0.9
+Ice Cream Cake,indica,Deep relaxing high with heavy body comfort,ice_cream_cake.jpg,vanilla creamy,sweet doughy,20,28,0,1,relaxed:1.0,myrcene:0.9,cinematic-review:1.0

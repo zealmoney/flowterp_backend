@@ -1,6 +1,8 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
+from cloudinary.models import CloudinaryField
+
 from effects.models import Effect
 from flowstate_labs.utils import generate_unique_slug
 from states.models import CreativeState
@@ -69,6 +71,8 @@ class Strain(models.Model):
         blank=True,
         help_text="Example: Blueberry x Haze"
     )
+    
+    image = CloudinaryField("image", blank=True, null=True)
 
     is_active = models.BooleanField(default=True)
     is_featured = models.BooleanField(default=False)

@@ -18,6 +18,7 @@ class HomepageStateSerializer(serializers.ModelSerializer):
 
 
 class HomepageStrainSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
     class Meta:
         model = Strain
         fields = [
@@ -25,6 +26,7 @@ class HomepageStrainSerializer(serializers.ModelSerializer):
             "name",
             "slug",
             "strain_type",
+            "image_url",
             "flavor_profile",
             "aroma_profile",
             "thc_min",
@@ -33,6 +35,11 @@ class HomepageStrainSerializer(serializers.ModelSerializer):
             "cbd_max",
             "is_featured",
         ]
+
+    def get_image_url(self, obj):
+        if obj.image:
+            return obj.image.url
+        return None
 
 
 class HomepageStateSectionSerializer(serializers.Serializer):

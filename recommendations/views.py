@@ -1,5 +1,6 @@
 from decimal import Decimal, InvalidOperation
 from feedback.models import StrainFeedback, normalize_feedback_filters
+from collections import defaultdict
 
 from django.db.models import (
     Case,
@@ -40,12 +41,16 @@ from .homepage_serializers import (
 )
 from .serializers import RecommendedStrainSerializer
 from strains.serializers import StrainListSerializer
+from django.db.models import Count
 
 from feedback.services import (
-    build_feedback_lookup_for_user,
+    build_feedback_lookup_with_fallback,
     get_feedback_score_adjustment,
     build_user_preference_profile,
     get_personalization_adjustment,
+    compute_feedback_confidence,
+    build_user_state_preference_profile,
+    get_per_state_adjustment,
 )
 
 from feedback.memory_services import (
@@ -313,13 +318,20 @@ class RecommendationListView(generics.ListAPIView):
 
     def apply_feedback_adjustments(self, queryset, request, filters):
         preference_profile = build_user_preference_profile(request.user)
-        feedback_lookup = build_feedback_lookup_for_user(request.user, filters)
+        feedback_lookup = build_feedback_lookup_with_fallback(request.user, filters)
         memory_summary = build_user_memory_summary(request.user)
+        state_profile = build_user_state_preference_profile(
+            request.user,
+            filters.get("state"),
+        )
+
+        confidence = compute_feedback_confidence(request.user)
 
         for item in queryset:
             feedback_adjustment = get_feedback_score_adjustment(
                 item.strain_id,
                 feedback_lookup,
+                confidence,
             )
 
             personalization_adjustment = get_personalization_adjustment(
@@ -332,15 +344,22 @@ class RecommendationListView(generics.ListAPIView):
                 memory_summary,
             )
 
+            state_adjustment = get_per_state_adjustment(
+                item.strain,
+                state_profile,
+            )
+
             item.feedback_adjustment = feedback_adjustment
             item.personalization_adjustment = personalization_adjustment
             item.memory_adjustment = memory_adjustment
+            item.state_adjustment = state_adjustment
 
             item.final_score = (
                 (item.final_score or Decimal("0.00"))
                 + feedback_adjustment
                 + personalization_adjustment
                 + memory_adjustment
+                + state_adjustment
             )
 
         queryset.sort(
@@ -381,7 +400,26 @@ class RecommendationListView(generics.ListAPIView):
         fallback_applied = best_level != "exact"
 
         return best_queryset, best_filters, fallback_applied, best_level
-    
+
+    def compute_feedback_consistency(user):
+        if not user or not user.is_authenticated:
+            return Decimal("1.0")
+
+        qs = StrainFeedback.objects.filter(user=user)
+
+        likes = qs.filter(feedback="like").count()
+        dislikes = qs.filter(feedback="dislike").count()
+
+        total = likes + dislikes
+        if total == 0:
+            return Decimal("1.0")
+
+        balance = abs(likes - dislikes) / total
+
+        # 🎯 balanced users = better signal
+        return Decimal("0.7") + Decimal(balance) * Decimal("0.6")
+
+       
 class HomepageDataView(APIView):
     permission_classes = [AllowAny]
 
@@ -528,7 +566,13 @@ class FilterMetadataView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, *args, **kwargs):
-        states = CreativeState.objects.filter(is_active=True).order_by("name")
+        states = (
+            CreativeState.objects
+            .filter(is_active=True)
+            .annotate(strain_count=Count("state_strain_links"))
+            .filter(strain_count__gt=0)
+            .order_by("name")
+        )
         effects = Effect.objects.filter(is_active=True).order_by("name")
         terpenes = Terpene.objects.filter(is_active=True).order_by("name")
 

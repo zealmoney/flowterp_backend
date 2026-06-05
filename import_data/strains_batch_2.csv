@@ -1,0 +1,42 @@
+name,strain_type,description,image_filename,flavor_profile,aroma_profile,thc_min,thc_max,cbd_min,cbd_max,effects,terpenes,states
+Maui Wowie,sativa,Tropical daytime uplift with bright creative energy,maui_wowie.jpg,tropical pineapple,sweet citrus,16,22,0,1,energetic:0.9,limonene:0.8,energy-boost:0.9
+Cinderella 99,sativa,Fast cerebral lift with strong focus and clarity,cinderella_99.jpg,citrus pineapple,sweet herbal,18,24,0,1,focused:0.9,terpinolene:0.8,deep-focus:0.9
+Tangie,sativa,Zesty citrus strain with a lively upbeat creative feel,tangie.jpg,orange citrus,fresh sweet,17,24,0,1,creative:0.9,limonene:0.9,creative-flow:0.9
+Lemon Tree,hybrid,Bright lemon-forward hybrid with uplifting mental ease,lemon_tree.jpg,lemon zest,sweet herbal,18,25,0,1,creative:0.8,limonene:0.9,creative-flow:0.8
+Harlequin,hybrid,Balanced clear-headed strain with gentler functional effects,harlequin.jpg,earthy mango,woody herbal,8,15,4,10,focused:0.8,pinene:0.7,deep-focus:0.8
+Cannatonic,hybrid,Calm and clear profile for lighter focused sessions,cannatonic.jpg,citrus earth,mild herbal,6,12,6,12,focused:0.7,myrcene:0.6,deep-focus:0.7
+ACDC,hybrid,Low-THC high-CBD strain with grounded mental balance,acdc.jpg,citrus pine,earthy woody,1,6,12,20,focused:0.7,pinene:0.7,deep-focus:0.7
+Lambs Bread,sativa,Uplifting classic sativa with clean energetic momentum,lambs_bread.jpg,pepper citrus,earthy herbal,16,24,0,1,energetic:0.9,caryophyllene:0.7,energy-boost:0.9
+Jillybean,hybrid,Cheerful creative hybrid with bright daytime appeal,jillybean.jpg,mango orange,sweet tropical,15,22,0,1,creative:0.8,limonene:0.8,creative-flow:0.8
+Chocolope,sativa,Stimulating and upbeat strain with strong creative lift,chocolope.jpg,chocolate coffee,sweet earthy,17,23,0,1,creative:0.9,terpinolene:0.8,creative-flow:0.9
+Bruce Banner,hybrid,Potent hybrid with strong uplifting power and energy,bruce_banner.jpg,berry diesel,sweet pungent,20,29,0,1,energetic:0.9,caryophyllene:0.8,energy-boost:0.9
+Sunset Sherbet,hybrid,Relaxed euphoric hybrid with flavorful smooth body feel,sunset_sherbet.jpg,berry citrus,sweet creamy,18,24,0,1,relaxed:0.8,limonene:0.7,cinematic-review:0.8
+Forbidden Fruit,indica,Rich fruity strain with heavy evening-style calm,forbidden_fruit.jpg,cherry tropical,sweet earthy,17,24,0,1,relaxed:0.9,myrcene:0.8,cinematic-review:0.9
+Wedding Gelato,hybrid,Creative dessert-like hybrid with balanced calming lift,wedding_gelato.jpg,vanilla berry,sweet creamy,19,26,0,1,creative:0.8,caryophyllene:0.7,creative-flow:0.8
+Motorbreath,hybrid,Heavy pungent hybrid with dense full-body calm,motorbreath.jpg,diesel earth,pungent spicy,20,28,0,1,relaxed:0.9,caryophyllene:0.8,cinematic-review:0.9
+Rainbow Belts,hybrid,Candy-sweet hybrid with mellow euphoric creativity,rainbow_belts.jpg,candy fruit,sweet herbal,18,25,0,1,creative:0.8,limonene:0.7,creative-flow:0.8
+Slurricane,indica,Heavy relaxing strain with rich sweet calming effects,slurricane.jpg,berry grape,sweet earthy,20,28,0,1,relaxed:0.9,myrcene:0.8,cinematic-review:0.9
+MAC 1,hybrid,Polished hybrid with smooth uplifting focus and balance,mac_1.jpg,citrus diesel,creamy pungent,19,27,0,1,focused:0.8,limonene:0.7,deep-focus:0.8
+Pancakes,hybrid,Dessert-forward hybrid with soft creative warmth,pancakes.jpg,butter vanilla,sweet doughy,18,25,0,1,creative:0.8,caryophyllene:0.7,cinematic-review:0.8
+Sherb Crasher,hybrid,Smooth sherb-like hybrid with relaxing euphoric depth,sherb_crasher.jpg,berry cream,sweet herbal,19,26,0,1,relaxed:0.8,myrcene:0.7,cinematic-review:0.8
+Animal Mints,hybrid,Cool minty hybrid with calm potency and balanced lift,animal_mints.jpg,mint cookie,sweet earthy,20,27,0,1,relaxed:0.8,caryophyllene:0.8,cinematic-review:0.8
+Biscotti,hybrid,Heavy dessert hybrid with rich relaxing calm,biscotti.jpg,cookie diesel,sweet spicy,21,28,0,1,relaxed:0.9,caryophyllene:0.8,cinematic-review:0.9
+Khalifa Kush,hybrid,Clean potent hybrid with uplifting yet steady focus,khalifa_kush.jpg,lemon pine,earthy pungent,20,28,0,1,focused:0.8,limonene:0.7,deep-focus:0.8
+RS11,hybrid,Balanced fruity hybrid with smooth euphoric expression,rs11.jpg,fruit candy,sweet floral,19,26,0,1,creative:0.8,limonene:0.7,creative-flow:0.8
+Jealousy,hybrid,Potent flavorful hybrid with layered calm and euphoria,jealousy.jpg,fruit gas,sweet earthy,20,28,0,1,relaxed:0.8,caryophyllene:0.8,cinematic-review:0.8
+Gary Payton,hybrid,Strong hybrid with focused uplift and clear punch,gary_payton.jpg,gas cookies,earthy sweet,20,27,0,1,focused:0.9,caryophyllene:0.8,deep-focus:0.9
+Permanent Marker,hybrid,Sharp exotic hybrid with bold pungent creative energy,permanent_marker.jpg,candy gas,pungent floral,22,30,0,1,creative:0.8,limonene:0.7,creative-flow:0.8
+Gelonade,hybrid,Citrus-forward hybrid with bright creative momentum,gelonade.jpg,lemon fruit,sweet zesty,18,26,0,1,creative:0.9,limonene:0.9,creative-flow:0.9
+Lemon Cherry Gelato,hybrid,Fruity dessert hybrid with smooth euphoric calm,lemon_cherry_gelato.jpg,cherry lemon,sweet creamy,20,28,0,1,relaxed:0.8,limonene:0.8,cinematic-review:0.8
+Tropicana Cookies,hybrid,Vibrant citrus hybrid with lively creative spark,tropicana_cookies.jpg,orange cookie,sweet citrus,18,26,0,1,creative:0.9,limonene:0.9,creative-flow:0.9
+Sundae Driver,hybrid,Soft mellow hybrid with calm mood-lifting balance,sundae_driver.jpg,grape vanilla,sweet creamy,16,23,0,1,relaxed:0.8,myrcene:0.7,cinematic-review:0.8
+Oreoz,hybrid,Heavy dessert-style hybrid with dense calming body feel,oreoz.jpg,chocolate vanilla,sweet earthy,20,29,0,1,relaxed:0.9,caryophyllene:0.8,cinematic-review:0.9
+Mendo Breath,indica,Deep body calm with rich earthy sweetness,mendo_breath.jpg,caramel vanilla,sweet earthy,19,27,0,1,relaxed:0.9,myrcene:0.8,cinematic-review:0.9
+Sour Tangie,sativa,Sharp citrus sativa with energetic social brightness,sour_tangie.jpg,orange diesel,zesty pungent,17,24,0,1,energetic:0.9,limonene:0.9,energy-boost:0.9
+Strawberry Lemonade,sativa,Fruity daytime sativa with bright creative lift,strawberry_lemonade.jpg,strawberry lemon,sweet citrus,16,23,0,1,creative:0.8,limonene:0.8,creative-flow:0.8
+Ghost Train Haze,sativa,High-energy cerebral strain with strong stimulating force,ghost_train_haze.jpg,citrus floral,pungent sweet,20,28,0,1,energetic:1.0,terpinolene:0.9,energy-boost:1.0
+Neville's Haze,sativa,Long-lasting soaring sativa with intense mental activity,nevilles_haze.jpg,spice citrus,herbal woody,18,26,0,1,energetic:0.9,terpinolene:0.8,energy-boost:0.9
+Super Silver Haze,sativa,Classic haze profile with focused energetic clarity,super_silver_haze.jpg,lemon spice,earthy skunky,18,25,0,1,focused:0.8,terpinolene:0.8,deep-focus:0.8
+Dutch Treat,hybrid,Smooth balanced hybrid with calming creative comfort,dutch_treat.jpg,berry pine,sweet earthy,17,24,0,1,creative:0.8,pinene:0.7,cinematic-review:0.8
+Flo,hybrid,Clear-headed hybrid with light creative motion and ease,flo.jpg,citrus floral,earthy sweet,14,20,0,1,focused:0.8,pinene:0.7,deep-focus:0.8
+Blueberry Muffin,indica,Comforting fruity strain with soft relaxing warmth,blueberry_muffin.jpg,blueberry pastry,sweet creamy,16,24,0,1,relaxed:0.8,myrcene:0.8,cinematic-review:0.8

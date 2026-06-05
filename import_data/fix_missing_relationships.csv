@@ -1,0 +1,3 @@
+name,strain_type,description,image_filename,flavor_profile,aroma_profile,thc_min,thc_max,cbd_min,cbd_max,effects,terpenes,states
+Lemon Haze,sativa,Bright citrus-forward strain with uplifting and clear-headed effects,lemon_haze.jpg,lemon citrus,zesty sweet,16,22,0,1,creative:0.85,limonene:0.9,"creative-flow:0.82,energy-boost:0.78,idea-generation:0.76"
+Sugar Cookies,hybrid,Dessert-like hybrid with relaxed creative warmth and smooth balance,sugar_cookies.jpg,sweet vanilla,sugary earthy,18,25,0,1,relaxed:0.8,caryophyllene:0.75,"relaxed-creativity:0.82,cinematic-review:0.78,late-night-vibes:0.74"

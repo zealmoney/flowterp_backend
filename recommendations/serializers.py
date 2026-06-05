@@ -80,6 +80,11 @@ class RecommendedStrainSerializer(serializers.ModelSerializer):
         decimal_places=4,
         read_only=True
     )
+    state_adjustment = serializers.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        read_only=True
+    )
     
 
     class Meta:
@@ -110,4 +115,5 @@ class RecommendedStrainSerializer(serializers.ModelSerializer):
             "notes",
             "personalization_adjustment",
             "memory_adjustment",
+            "state_adjustment",
         ]

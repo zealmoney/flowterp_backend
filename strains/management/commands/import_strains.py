@@ -21,13 +21,11 @@ def parse_decimal(value):
         return None
 
 
+def csv_has_value(row, key):
+    return key in row and row.get(key) not in [None, ""]
+
+
 def parse_scored_slugs(raw_value):
-    """
-    Converts:
-      'focused:0.95,energetic:0.88'
-    into:
-      [('focused', Decimal('0.95')), ('energetic', Decimal('0.88'))]
-    """
     results = []
 
     if not raw_value:
@@ -118,20 +116,6 @@ class Command(BaseCommand):
                     )
                     continue
 
-                strain_defaults = {
-                    "strain_type": (row.get("strain_type") or "hybrid").strip() or "hybrid",
-                    "description": (row.get("description") or "").strip(),
-                    "flavor_profile": (row.get("flavor_profile") or "").strip(),
-                    "aroma_profile": (row.get("aroma_profile") or "").strip(),
-                    "thc_min": parse_decimal(row.get("thc_min")),
-                    "thc_max": parse_decimal(row.get("thc_max")),
-                    "cbd_min": parse_decimal(row.get("cbd_min")),
-                    "cbd_max": parse_decimal(row.get("cbd_max")),
-                    "breeder": (row.get("breeder") or "").strip(),
-                    "lineage": (row.get("lineage") or "").strip(),
-                    "is_active": True,
-                }
-
                 strain = Strain.objects.filter(name=name).first()
 
                 if strain and not allow_update:
@@ -140,14 +124,55 @@ class Command(BaseCommand):
                     )
                     continue
 
-                if strain:
-                    for field, value in strain_defaults.items():
-                        setattr(strain, field, value)
+                if not strain:
+                    strain = Strain.objects.create(
+                        name=name,
+                        strain_type=(row.get("strain_type") or "hybrid").strip() or "hybrid",
+                        description=(row.get("description") or "").strip(),
+                        flavor_profile=(row.get("flavor_profile") or "").strip(),
+                        aroma_profile=(row.get("aroma_profile") or "").strip(),
+                        thc_min=parse_decimal(row.get("thc_min")),
+                        thc_max=parse_decimal(row.get("thc_max")),
+                        cbd_min=parse_decimal(row.get("cbd_min")),
+                        cbd_max=parse_decimal(row.get("cbd_max")),
+                        breeder=(row.get("breeder") or "").strip(),
+                        lineage=(row.get("lineage") or "").strip(),
+                        is_active=True,
+                    )
+                    created_count += 1
+                else:
+                    if csv_has_value(row, "strain_type"):
+                        strain.strain_type = row["strain_type"].strip() or strain.strain_type
+
+                    if csv_has_value(row, "description"):
+                        strain.description = row["description"].strip()
+
+                    if csv_has_value(row, "flavor_profile"):
+                        strain.flavor_profile = row["flavor_profile"].strip()
+
+                    if csv_has_value(row, "aroma_profile"):
+                        strain.aroma_profile = row["aroma_profile"].strip()
+
+                    if csv_has_value(row, "thc_min"):
+                        strain.thc_min = parse_decimal(row["thc_min"])
+
+                    if csv_has_value(row, "thc_max"):
+                        strain.thc_max = parse_decimal(row["thc_max"])
+
+                    if csv_has_value(row, "cbd_min"):
+                        strain.cbd_min = parse_decimal(row["cbd_min"])
+
+                    if csv_has_value(row, "cbd_max"):
+                        strain.cbd_max = parse_decimal(row["cbd_max"])
+
+                    if csv_has_value(row, "breeder"):
+                        strain.breeder = row["breeder"].strip()
+
+                    if csv_has_value(row, "lineage"):
+                        strain.lineage = row["lineage"].strip()
+
                     strain.save()
                     updated_count += 1
-                else:
-                    strain = Strain.objects.create(name=name, **strain_defaults)
-                    created_count += 1
 
                 image_filename = (row.get("image_filename") or "").strip()
                 if image_filename and images_dir:
@@ -163,8 +188,6 @@ class Command(BaseCommand):
                                 resource_type="image",
                             )
 
-                            # Store the Cloudinary public_id on the model field.
-                            # This is the safest path for CloudinaryField-backed models.
                             strain.image = upload_result["public_id"]
                             strain.save(update_fields=["image", "updated_at"])
 
@@ -188,55 +211,59 @@ class Command(BaseCommand):
                             )
                         )
 
-                # Rebuild relationships on update/import
-                StrainEffect.objects.filter(strain=strain).delete()
-                StrainTerpene.objects.filter(strain=strain).delete()
-                StrainState.objects.filter(strain=strain).delete()
+                if csv_has_value(row, "effects"):
+                    StrainEffect.objects.filter(strain=strain).delete()
 
-                for effect_slug, score in parse_scored_slugs(row.get("effects")):
-                    effect = Effect.objects.filter(slug=effect_slug).first()
-                    if effect:
-                        StrainEffect.objects.create(
-                            strain=strain,
-                            effect=effect,
-                            score=score,
-                        )
-                    else:
-                        self.stdout.write(
-                            self.style.WARNING(
-                                f"Row {row_index}: effect slug '{effect_slug}' not found."
+                    for effect_slug, score in parse_scored_slugs(row.get("effects")):
+                        effect = Effect.objects.filter(slug=effect_slug).first()
+                        if effect:
+                            StrainEffect.objects.create(
+                                strain=strain,
+                                effect=effect,
+                                score=score,
                             )
-                        )
+                        else:
+                            self.stdout.write(
+                                self.style.WARNING(
+                                    f"Row {row_index}: effect slug '{effect_slug}' not found."
+                                )
+                            )
 
-                for terpene_slug, prominence in parse_scored_slugs(row.get("terpenes")):
-                    terpene = Terpene.objects.filter(slug=terpene_slug).first()
-                    if terpene:
-                        StrainTerpene.objects.create(
-                            strain=strain,
-                            terpene=terpene,
-                            prominence=prominence,
-                        )
-                    else:
-                        self.stdout.write(
-                            self.style.WARNING(
-                                f"Row {row_index}: terpene slug '{terpene_slug}' not found."
-                            )
-                        )
+                if csv_has_value(row, "terpenes"):
+                    StrainTerpene.objects.filter(strain=strain).delete()
 
-                for state_slug, score in parse_scored_slugs(row.get("states")):
-                    state = CreativeState.objects.filter(slug=state_slug).first()
-                    if state:
-                        StrainState.objects.create(
-                            strain=strain,
-                            state=state,
-                            score=score,
-                        )
-                    else:
-                        self.stdout.write(
-                            self.style.WARNING(
-                                f"Row {row_index}: state slug '{state_slug}' not found."
+                    for terpene_slug, prominence in parse_scored_slugs(row.get("terpenes")):
+                        terpene = Terpene.objects.filter(slug=terpene_slug).first()
+                        if terpene:
+                            StrainTerpene.objects.create(
+                                strain=strain,
+                                terpene=terpene,
+                                prominence=prominence,
                             )
-                        )
+                        else:
+                            self.stdout.write(
+                                self.style.WARNING(
+                                    f"Row {row_index}: terpene slug '{terpene_slug}' not found."
+                                )
+                            )
+
+                if csv_has_value(row, "states"):
+                    StrainState.objects.filter(strain=strain).delete()
+
+                    for state_slug, score in parse_scored_slugs(row.get("states")):
+                        state = CreativeState.objects.filter(slug=state_slug).first()
+                        if state:
+                            StrainState.objects.create(
+                                strain=strain,
+                                state=state,
+                                score=score,
+                            )
+                        else:
+                            self.stdout.write(
+                                self.style.WARNING(
+                                    f"Row {row_index}: state slug '{state_slug}' not found."
+                                )
+                            )
 
         if not saw_rows:
             self.stdout.write(self.style.WARNING("No data rows were read from the CSV."))

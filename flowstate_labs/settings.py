@@ -110,7 +110,7 @@ WSGI_APPLICATION = 'flowstate_labs.wsgi.application'
 DATABASES = {
     'default': dj_database_url.parse(
         'postgresql://postgres:wMQVthoKYCkGEgpRXuDcYwBzqVBYgWHA@maglev.proxy.rlwy.net:20682/railway',
-        conn_max_age=600,
+        conn_max_age=0,
         ssl_require=True
     )
 }

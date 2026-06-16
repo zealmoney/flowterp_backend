@@ -107,13 +107,31 @@ WSGI_APPLICATION = 'flowstate_labs.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 
-DATABASES = {
-    'default': dj_database_url.parse(
-        'postgresql://postgres:wMQVthoKYCkGEgpRXuDcYwBzqVBYgWHA@maglev.proxy.rlwy.net:20682/railway',
-        conn_max_age=0,
-        ssl_require=True
-    )
-}
+# DATABASES = {
+#    'default': dj_database_url.parse(
+#        'postgresql://postgres:wMQVthoKYCkGEgpRXuDcYwBzqVBYgWHA@maglev.proxy.rlwy.net:20682/railway',
+#        conn_max_age=0,
+#        ssl_require=True
+#    )
+#}
+
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+if DATABASE_URL:
+    DATABASES = {
+        "default": dj_database_url.parse(
+            'postgresql://postgres:wMQVthoKYCkGEgpRXuDcYwBzqVBYgWHA@maglev.proxy.rlwy.net:20682/railway',
+            conn_max_age=0,
+            ssl_require=True,
+        )
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 
 REST_FRAMEWORK = {

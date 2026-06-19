@@ -120,7 +120,7 @@ DATABASE_URL = os.environ.get("DATABASE_URL")
 if DATABASE_URL:
     DATABASES = {
         "default": dj_database_url.parse(
-            'postgresql://postgres:wMQVthoKYCkGEgpRXuDcYwBzqVBYgWHA@maglev.proxy.rlwy.net:20682/railway',
+            'postgresql://postgres:gCZAYsVywyLSiQPZnXKXHOWHudcthnhQ@hopper.proxy.rlwy.net:22879/railway',
             conn_max_age=0,
             ssl_require=True,
         )

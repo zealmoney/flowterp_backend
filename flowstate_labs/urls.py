@@ -13,8 +13,9 @@ def db_health(request):
     return JsonResponse({
         "has_database_url": bool(database_url),
         "database_url_host_hint": database_url.split("@")[-1].split("/")[0] if "@" in database_url else "",
-        "db_name": connection.settings_dict.get("NAME"),
-        "db_host": connection.settings_dict.get("HOST"),
+        "db_name": str(connection.settings_dict.get("NAME")),
+        "db_host": str(connection.settings_dict.get("HOST")),
+        "engine": str(connection.settings_dict.get("ENGINE")),
         "strain_count": Strain.objects.count(),
         "state_count": CreativeState.objects.count(),
     })
@@ -22,7 +23,7 @@ def db_health(request):
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/db-health/", db_health),
-    
+
     path("api/", include("users.urls")),
     path("api/strains/", include("strains.urls")),
     path("api/effects/", include("effects.urls")),

@@ -107,20 +107,14 @@ WSGI_APPLICATION = 'flowstate_labs.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 
-# DATABASES = {
-#    'default': dj_database_url.parse(
-#        'postgresql://postgres:wMQVthoKYCkGEgpRXuDcYwBzqVBYgWHA@maglev.proxy.rlwy.net:20682/railway',
-#        conn_max_age=0,
-#        ssl_require=True
-#    )
-#}
-
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
-if DATABASE_URL:
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL is not set")
+
     DATABASES = {
         "default": dj_database_url.parse(
-            'postgresql://postgres:gCZAYsVywyLSiQPZnXKXHOWHudcthnhQ@hopper.proxy.rlwy.net:22879/railway',
+            DATABASE_URL,
             conn_max_age=0,
             ssl_require=True,
         )
